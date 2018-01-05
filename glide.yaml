@@ -1,2 +1,4 @@
 package: .
-import: []
+import:
+- package: github.com/go-ini/ini
+  version: ^1.32.0
