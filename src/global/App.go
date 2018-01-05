@@ -1,8 +1,10 @@
 package global
 
 import (
-	"ini"
+	"GoWeibo/util"
 	"time"
+
+	"github.com/go-ini/ini"
 )
 
 const (
@@ -21,6 +23,7 @@ type app struct {
 	Date       time.Time
 	Uptime     time.Duration
 	Env        string
+	Port       string
 }
 
 // App 初始化app
@@ -28,5 +31,15 @@ var App = &app{}
 
 func init() {
 	cfg, err := ini.InsensitiveLoad("env.ini")
+	util.Err(err)
+	secGlobal, errG := cfg.GetSection("global")
+	util.Err(errG)
+	secListen, errL := cfg.GetSection("listen")
+	util.Err(errL)
+
+	App.Name = secGlobal.Key("appName").String()
+	App.Version = secGlobal.Key("appVersion").String()
+	App.Env = secGlobal.Key("appVersion").String()
 	App.LaunchTime = time.Now()
+	App.Port = secListen.Key("port").String()
 }
