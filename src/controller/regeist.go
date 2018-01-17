@@ -1,6 +1,10 @@
 package controller
 
-import "github.com/gin-gonic/gin"
+import (
+	"fmt"
+
+	"github.com/gin-gonic/gin"
+)
 
 // Regist 注册
 type Regist struct{}
@@ -11,5 +15,9 @@ func (c Regist) RegisterRoute(e *gin.Engine) {
 }
 
 func userRegist(c *gin.Context) {
+	email := c.Query("email")
+	password := c.Query("password")
+	fmt.Println(email)
+	fmt.Println(password)
 	success(c, "userRegist")
 }
