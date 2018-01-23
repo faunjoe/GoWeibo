@@ -30,7 +30,7 @@ type app struct {
 var App = &app{}
 
 func init() {
-	cfg, err := ini.InsensitiveLoad("env.ini")
+	cfg, err := ini.InsensitiveLoad("config/env.ini")
 	util.Err(err)
 	secGlobal, errG := cfg.GetSection("global")
 	util.Err(errG)

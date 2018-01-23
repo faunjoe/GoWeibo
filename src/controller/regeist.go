@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"fmt"
+	"GoWeibo/src/model"
 
 	"github.com/gin-gonic/gin"
 )
@@ -17,7 +17,14 @@ func (c Regist) RegisterRoute(e *gin.Engine) {
 func userRegist(c *gin.Context) {
 	email := c.Query("email")
 	password := c.Query("password")
-	fmt.Println(email)
-	fmt.Println(password)
-	success(c, "userRegist")
+	u := model.User{Email: email, Password: password}
+	err := model.InsertUser(&u)
+	if err != nil {
+		fail(c, err.Error())
+		return
+	}
+	success(c, "注册成功")
+	// fmt.Println(email)
+	// fmt.Println(password)
+	// success(c, "userRegist")
 }

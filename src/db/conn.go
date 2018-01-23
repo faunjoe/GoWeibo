@@ -22,7 +22,7 @@ func init() {
 
 func initEngine() error {
 	var err error
-	MasterDB, err = gorm.Open("mysql", "root:123456@/weibo?charset=utf8&parseTime=True&loc=Local")
+	MasterDB, err = gorm.Open("mysql", "root:123456@/weibo?charset=utf8mb4&parseTime=True&loc=Local")
 	if err != nil {
 		return err
 	}
