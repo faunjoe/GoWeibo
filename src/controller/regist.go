@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"GoWeibo/src/logic"
 	"GoWeibo/src/model"
 
 	"github.com/gin-gonic/gin"
@@ -15,9 +16,10 @@ func (c Regist) RegisterRoute(e *gin.Engine) {
 }
 
 func userRegist(c *gin.Context) {
-	email := c.Query("email")
-	password := c.Query("password")
-	u := model.User{Email: email, Password: password}
+
+	userLogic := login.DefaultUser
+	logic.CreateUser(c)
+
 	err := model.InsertUser(&u)
 	if err != nil {
 		fail(c, err.Error())
