@@ -9,8 +9,9 @@ import (
 )
 
 func success(c *gin.Context, data interface{}) error {
+
 	result := map[string]interface{}{
-		"ok":   1,
+		"ok":   0,
 		"msg":  "操作成功",
 		"data": data,
 	}
@@ -19,9 +20,10 @@ func success(c *gin.Context, data interface{}) error {
 	if err != nil {
 		return err
 	}
+	// 能够成功转换
 
 	c.JSON(200, gin.H{
-		"code": 1,
+		"code": 0,
 		"msg":  "操作成功",
 		"data": data,
 	})
